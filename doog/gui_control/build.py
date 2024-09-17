@@ -1,16 +1,36 @@
 import tkinter as tk
+import subprocess
+import os
+
+
+def clone_repo():
+    url = 'https://github.com/ikkase00/ikalab.git'
+    target = os.path.join(os.getcwd(), 'ikalab')
+
+    try:
+        desc.config(text = 'cloning into ikalab...can take a while depending on the size of weights')
+        root.update()
+        subprocess.run(['git', 'clone', url, target], check = True)
+        desc.config(text = 'ok!')
+        root.update()
+    except Exception as _:
+        desc.config(text = 'something went wrong...installation aborted')
+        root.update()
+
+
 
 def the_button():
-    label.config(text = 'oh..')
+    desc.config(text = 'in progress...')
+    clone_repo()
 
 root = tk.Tk()
-root.title('the thing')
+root.title('the mysterious installer')
 
-label = tk.Label(root, text = '<-')
-label.pack()
+desc = tk.Label(root, text = 'for ikalab')
+desc.pack()
 
-but = tk.Button(root, text = 'o', command = the_button)
-but.pack()
+clicker = tk.Button(root, text = 'click to execute', command = the_button)
+clicker.pack()
 
 root.mainloop()
 
