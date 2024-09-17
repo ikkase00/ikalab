@@ -1,4 +1,6 @@
 doog/.idea/
 doog/mod_related/doms/MNIST
 .idea
+doog/gui_control/build.spec
+doog/gui_control/build
 __pycache__/

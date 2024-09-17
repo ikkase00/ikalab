@@ -8,7 +8,7 @@ def clone_repo():
     target = os.path.join(os.getcwd(), 'ikalab')
 
     try:
-        desc.config(text = 'cloning into ikalab...can take a while depending on the size of weights')
+        desc.config(text = f'cloning into {target}...can take a while depending on the size of weights')
         root.update()
         subprocess.run(['git', 'clone', url, target], check = True)
         desc.config(text = 'ok!')
