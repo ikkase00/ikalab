@@ -63,12 +63,12 @@ class Ops:
 
 def chanpanlays(model: torch.nn.Module, ratio: tuple, conv_bias: bool, devices: list):
     """
-    NOTE: This function does NOT move any layer to any device!!!Use chanpanzee if you want to create a entire model
+    NOTE: This function does NOT move any layer to any device!!!Use chanpanzee if you want to create an entire model
     :param model: your model
     :param ratio: the performance ratio between your devices
     :param conv_bias: enable convolutional bias or not
     :param devices: device names, in a list of the same order of the ratio
-    :return: two block of layers in sequential format
+    :return: two blocks of layers in sequential format
     """
 
     assert len(devices) == 2, 'chanpanmod supports at most two devices 🫨'
@@ -100,8 +100,8 @@ def chanpanlays(model: torch.nn.Module, ratio: tuple, conv_bias: bool, devices: 
     for namae in namaes:
 
         assert (namae[-1] != 'a') and (namae[-1] != 'b') and (
-                '_' not in namae), ('plz do nooot end with a or b or contain _ in your layer names as the function '
-                                    'will be blown up 🫠')
+                '_' not in namae), ('do nooot end your layer names with a or b or contain _ as the function '
+                                    'will blow up 🫠')
 
         layer = paras[namae]
         lame = layer['lame']
@@ -159,9 +159,9 @@ def chanpanzee(model: torch.nn.Module, data: torch.tensor, ratio: tuple, conv_bi
     :param model: your model
     :param data: the input tensor, expected to have a shape of B, C, W, H
     :param ratio: the performance ratio between your devices
-    :param conv_bias: enable convolutional bias or not
+    :param conv_bias: enable convolutional bias
     :param devices: device names, in a list of the same order of the ratio
-    :return: a list of models and a list of data ordered and correspond to your devices
+    :return: a list of models + a list of data ordered and correspond to your devices
     """
 
     rat_tot = sum(ratio)
@@ -176,5 +176,7 @@ def chanpanzee(model: torch.nn.Module, data: torch.tensor, ratio: tuple, conv_bi
 
     dom = [aom, bom]
     dat = [data, datab]
+
+    raise Warning('You might need to adjust the data type of weights or data')
 
     return dom, dat

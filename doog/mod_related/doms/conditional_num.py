@@ -3,19 +3,18 @@ import torch.nn as nn
 
 no = False
 yes = True
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 class conditional_num_g(nn.Module):
-    def __init__(self, imshape: list, classes:int, device: torch.device, ):
+    def __init__(self, imshape: list, classes:int, ):
         super(conditional_num_g, self).__init__()
 
-        self.noif = 140
-        self.classes = classes
-        self.emb = nn.Embedding(self.classes, self.classes)
-        self.base = 64
-        self.imshape = imshape
-        self.devi = device
+        self.noif = 140 # initializing the noise vector
+        self.classes = classes # identify number of classes
+        self.emb = nn.Embedding(self.classes, self.classes) # creating word embedding layer
+        self.base = 64 # base input channel
+        self.imshape = imshape # identify image dimensions
 
+        # creating the model
         self.ggc_ = nn.Sequential(
             *self.mache((self.classes + self.noif), self.base * 2, no),
             *self.mache(self.base * 2, self.base * 4),
@@ -25,6 +24,7 @@ class conditional_num_g(nn.Module):
             nn.Tanh(),
         )
 
+    # helper function to construct internal layers
     def mache(self, ic, oc, bnq=True, ):
         ll = [nn.Linear(ic, oc)]
         if bnq:
@@ -33,6 +33,7 @@ class conditional_num_g(nn.Module):
 
         return ll
 
+    # forward pass
     def forward(self, noiz, labels, ):
         emblem = torch.cat((self.emb(labels), noiz), -1)
         out = self.ggc_(emblem)
