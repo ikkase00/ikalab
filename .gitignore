@@ -1,5 +1,4 @@
 doog/.idea/
-doog/mod_related/doms/MNIST 
+doog/mod_related/doms/MNIST
+.idea
 __pycache__/
-test.py
-testt.py
