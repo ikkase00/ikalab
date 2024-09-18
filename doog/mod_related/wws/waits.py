@@ -2,6 +2,7 @@ import torch
 from pathlib import Path
 root = str(Path(__file__).resolve().parent)
 
+# helper function to handle weight operations, e.g. fetch, load
 def get_weights(model_name: str, project: str, device, casual = False):
     """
     :param model_name: model name (from doms)

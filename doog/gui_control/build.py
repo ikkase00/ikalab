@@ -23,7 +23,7 @@ def the_button():
     desc.config(text = 'in progress...')
     clone_repo()
 
-# get the gui to run
+# execution
 root = tk.Tk()
 root.title('the mysterious installer')
 

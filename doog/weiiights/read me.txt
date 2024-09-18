@@ -1,0 +1,1 @@
+This folder stores weights, please don't torch them.
