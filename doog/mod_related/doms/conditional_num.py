@@ -4,6 +4,7 @@ import torch.nn as nn
 no = False
 yes = True
 
+# conditional number generator GAN model
 class conditional_num_g(nn.Module):
     def __init__(self, imshape: list, classes:int, ):
         super(conditional_num_g, self).__init__()
@@ -41,6 +42,7 @@ class conditional_num_g(nn.Module):
 
         return outt
 
+    # get noise
     def get(self, batch_size, label: int or str):
         """ 
         :param label: choose a number(0 <= int <= 9) / random generate(any string)
@@ -53,11 +55,12 @@ class conditional_num_g(nn.Module):
             la = torch.tensor([label for _ in range(batch_size)], device = self.devi)
 
         return torch.randn((batch_size, self.noif), device = self.devi), la
-    
+
+# vanilla + group CNN network
 class hybrid_disc(nn.Module):
     def __init__(self, basek):
         """
-        This model takes MNIST number (or number images generated from the generator from the same project) images tensor with shape batch_size, 1, 64, 64 as input. 
+        This model takes MNIST numbers (or number images generated from the generator from the same project) images tensor with shape batch_size, 1, 64, 64 as input.
         :param basek: base quantity of convolution filters
         """
         super(hybrid_disc, self).__init__()
@@ -76,6 +79,7 @@ class hybrid_disc(nn.Module):
             nn.Dropout(.3),
         )
 
+    # helper function to make layers
     @staticmethod
     def mache(ic, oc, ks, st, pd, grp):
         """
@@ -89,5 +93,6 @@ class hybrid_disc(nn.Module):
             nn.BatchNorm2d(oc, affine = yes),
         )
 
+    # forward pass
     def forward(self, dat):
         return self.driv(dat).softmax(dim = -1)

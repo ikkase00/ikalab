@@ -6,7 +6,7 @@ import copy
 no = False
 yes = True
 
-
+# class key operations
 class Ops:
     @staticmethod
     def repkey(d: dict, new, old):
@@ -46,6 +46,7 @@ class Ops:
             idk = ('z', numeric_part)
         return idk
 
+    # convert to nn Module
     @staticmethod
     def mad(seq_layers, device):
         class Chanpanmod(nn.Module):
@@ -60,7 +61,7 @@ class Ops:
 
         return Chanpanmod().to(device)
 
-
+# make parallel models
 def chanpanlays(model: torch.nn.Module, ratio: tuple, conv_bias: bool, devices: list):
     """
     NOTE: This function does NOT move any layer to any device!!!Use chanpanzee if you want to create an entire model
@@ -153,7 +154,7 @@ def chanpanlays(model: torch.nn.Module, ratio: tuple, conv_bias: bool, devices: 
 
     return aod, bod
 
-
+# packup models and data
 def chanpanzee(model: torch.nn.Module, data: torch.tensor, ratio: tuple, conv_bias: bool, devices: list):
     """
     :param model: your model

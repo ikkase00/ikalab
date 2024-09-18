@@ -2,7 +2,7 @@ import tkinter as tk
 import subprocess
 import os
 
-
+# fetch and clone repo
 def clone_repo():
     url = 'https://github.com/ikkase00/ikalab.git'
     target = os.path.join(os.getcwd(), 'ikalab')
@@ -18,11 +18,12 @@ def clone_repo():
         root.update()
 
 
-
+# config button function
 def the_button():
     desc.config(text = 'in progress...')
     clone_repo()
 
+# get the gui to run
 root = tk.Tk()
 root.title('the mysterious installer')
 
