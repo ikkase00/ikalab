@@ -178,6 +178,6 @@ def chanpanzee(model: torch.nn.Module, data: torch.tensor, ratio: tuple, conv_bi
     dom = [aom, bom]
     dat = [data, datab]
 
-    raise Warning('You might need to adjust the data type of weights or data')
+    print('You might need to adjust the data type of weights or data')
 
     return dom, dat

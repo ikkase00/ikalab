@@ -4,3 +4,4 @@ doog/mod_related/doms/MNIST
 doog/gui_control/build.spec
 doog/gui_control/build
 __pycache__/
+.DS_Store
